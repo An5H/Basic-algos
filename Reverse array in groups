@@ -1,0 +1,78 @@
+import java.io.*;
+import java.util.*;
+
+
+ // } Driver Code Ends
+
+
+class Reverse{
+    
+    // Function to reverse array in group of k 
+    public static ArrayList<Integer> reverseInGroups(ArrayList<Integer> mv, int n, int k) {
+        ArrayList <Integer> list = new ArrayList<>();
+        int arr[] = new int[n];
+        for(int i = 0; i < n; i++){
+            arr[i] = mv.get(i);
+        }
+        for (int i = 0; i < n; i += k) 
+        { 
+            int left = i; 
+      
+            // to handle case when k is not multiple 
+            // of n 
+            int right = Math.min(i + k - 1, n - 1); 
+            int temp; 
+              
+            // reverse the sub-array [left, right] 
+            while (left < right) 
+            { 
+                temp=arr[left]; 
+                arr[left]=arr[right]; 
+                arr[right]=temp; 
+                left+=1; 
+                right-=1; 
+            } 
+        }
+        for(int i: arr){
+            list.add(i);
+        }
+        return list;
+    }
+}
+
+
+
+// { Driver Code Starts.
+
+class GFG {
+    
+	public static void main (String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine().trim()); //Inputting the testcases
+		while(t-->0){
+		    String inputLine1[] = br.readLine().trim().split(" ");
+		    int n = Integer.parseInt(inputLine1[0]);
+		    int k = Integer.parseInt(inputLine1[1]);
+		    
+		    ArrayList<Integer> mv = new ArrayList<>();
+		    
+		    String inputLine2[] = br.readLine().trim().split(" ");
+		    for(int i=0; i<n; i++){
+		        mv.add(Integer.parseInt(inputLine2[i]));
+		    }
+		    
+		    Reverse obj = new Reverse();
+		    
+		    mv = obj.reverseInGroups(mv, n, k);
+		    
+		    StringBuffer str = new StringBuffer();
+		    
+		    for(int i=0; i<n; i++){
+		        str.append(mv.get(i) + " ");
+		    }
+		    System.out.println(str);
+		}
+	}
+}
+
+  // } Driver Code Ends
