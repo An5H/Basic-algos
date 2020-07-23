@@ -1,0 +1,53 @@
+//Initial Template for Java
+
+import java.lang.*;
+import java.io.*;
+import java.util.*;
+
+class Driverclass 
+{
+    public static void main (String[] args) 
+    {
+		Scanner sc = new Scanner(System. in);
+		int t = sc.nextInt();
+		sc.nextLine();
+		while(t-->0)
+		{
+		   int n = sc.nextInt();
+		   int mat[][]= new int[n][n];
+		   for(int i = 0; i < n; i++)
+		   {
+		       for(int j = 0; j < n; j++)
+		         mat[i][j] = sc.nextInt();
+		   }
+		   new Upper_Lower_TriangleSum().Summatrix(mat, n);
+		  
+		  System.out.println();
+		
+        } 
+        
+	}
+}
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Upper_Lower_TriangleSum
+{
+    static void Summatrix(int mat[][], int n)
+    {
+        int sumUpper = 0, sumLower = 0;
+        for(int i = 0; i < mat.length; i++){
+            for(int j = i; j < mat[i].length; j++){
+                sumUpper += mat[i][j];
+            }
+        }
+        for(int i = 0; i < mat.length; i++){
+            for(int j = 0; j < i+1; j++){
+                sumLower += mat[i][j];
+            }
+        }
+        System.out.print(sumUpper+" "+sumLower);
+    }
+}
