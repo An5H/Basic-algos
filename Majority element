@@ -1,0 +1,76 @@
+//Initial Template for Java
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+class Geeks
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        
+        while(t-- > 0)
+        {
+            int n =sc.nextInt();
+            int arr[] = new int[n];
+            
+            for(int i = 0; i < n; i++)
+             arr[i] = sc.nextInt();
+             
+           System.out.println(new Majority().majorityElement(arr, n)); 
+        }
+    }
+}// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Majority
+{
+    static int majorityElement(int a[], int size)
+    {
+         ArrayList<Integer> arry = new ArrayList<>();
+         HashMap<Integer, Integer> map = new HashMap<>();
+         Arrays.sort(a);
+         int max = a[size-1];
+         for(int i: a){
+             map.put(i, 0);
+         }
+         for(int i: a){
+             if(map.containsKey(i)){
+                 map.put(i, map.get(i)+1);
+             }
+         }
+         for(Map.Entry<Integer, Integer> mp: map.entrySet()){
+             arry.add(mp.getValue());
+         }
+         int maxElement = Integer.MIN_VALUE;
+         
+         for(int i: arry){
+             maxElement = Math.max(maxElement, i);
+         }
+         if ((maxElement > (size/2)) && (!areSame(arry))){
+             for(Map.Entry<Integer, Integer> mp: map.entrySet()){
+             if(maxElement == mp.getValue()){
+                    return mp.getKey();
+                }
+             }
+         }
+         return -1;
+    }
+    public static boolean areSame(ArrayList<Integer> arr) 
+    { 
+        if(arr.size() == 1){
+            return false;
+        }
+        int first = arr.get(0);
+        for(int i = 1; i < arr.size(); i++){
+            if(arr.get(i) != first){
+                return false;
+            }
+        }
+        return true;
+    } 
+}
