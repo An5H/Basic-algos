@@ -1,0 +1,51 @@
+
+'''
+	Your task is to return concatenated string
+	after removing characters which are
+	common to both string.
+	
+	Function Arguments: s and p (given strings)
+	Return Type: string
+'''
+
+def concatenatedString(a,b):
+    ans = ""
+    for l in a:
+        if l not in b:
+            ans+=l
+    for c in b:
+        if c not in a:
+            ans+=c
+    if len(ans)==0:
+        return "-1"
+    else:
+        return ans
+    
+
+
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+import atexit
+import io
+import sys
+
+_INPUT_LINES = sys.stdin.read().splitlines()
+input = iter(_INPUT_LINES).__next__
+_OUTPUT_BUFFER = io.StringIO()
+sys.stdout = _OUTPUT_BUFFER
+
+@atexit.register
+
+def write():
+    sys.__stdout__.write(_OUTPUT_BUFFER.getvalue())
+
+if __name__=='__main__':
+    t = int(input())
+    for i in range(t):
+        s=str(input())
+        p=str(input())
+        print(concatenatedString(s,p))
+# } Driver Code Ends
