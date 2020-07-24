@@ -1,0 +1,55 @@
+import java.io.*;
+
+class GFG {
+    
+	public static void main (String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int t;
+		t = sc.nextInt();
+		String s12 = sc.nextLine();
+		for(int i=0; i<t; i++){
+		    String s1 = sc.nextLine();
+		    String s2 = sc.nextLine();
+		    
+		    Rotation obj = new Rotation();
+		    
+		    boolean flag = obj.isRotated(s1, s2);
+		    
+		    if(flag == true) System.out.println("1");
+		    else System.out.println("0");
+		    
+		}
+	}
+}// } Driver Code Ends
+
+
+class Rotation{
+    
+    /*  Function to check if two strings are rotated
+    *   s1, s2: input strings
+    */
+    public static boolean isRotated(String A, String B){
+        if(A.length() == B.length() && A.length() >=2){
+            return ((A.charAt(0) == B.charAt(B.length()-2)) && (A.charAt(1) == B.charAt(B.length()-1))
+            || (B.charAt(0) == A.charAt(A.length()-2)) && (B.charAt(1) == A.charAt(A.length()-1)));
+        }
+        else{
+            return A.equals(B);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
